@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, request, Response
 from telegram import Bot
 import os
@@ -40,7 +41,7 @@ def hello_world():  # put application's code here
     event = request_data['event']
     course = request_data['course']
     subs = [*subs.values()]
-    # logging.error(request_data)
+    logging.error(request_data)
     message = build_message(course, event, instance)
     for sub in subs:
         send_state = bot.send_message(sub['telegram_chat_id'], message)
